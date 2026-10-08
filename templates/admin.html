@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard | Essential Public Services
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-page">
+
+    <div class="admin-header">
+
+        <div>
+
+            <span class="badge">
+                Administrator Dashboard
+            </span>
+
+            <h1>
+                Manage Facilities
+            </h1>
+
+            <p>
+                Add, edit or remove essential public services
+                from the locality directory.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('add_facility') }}"
+            class="primary-btn">
+
+            + Add Facility
+
+        </a>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span class="stat-number">
+                {{ total_facilities }}
+            </span>
+
+            <span class="stat-label">
+                Total Facilities
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-number">
+                {{ total_hospitals }}
+            </span>
+
+            <span class="stat-label">
+                Hospitals
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-number">
+                {{ total_schools }}
+            </span>
+
+            <span class="stat-label">
+                Schools
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-number">
+                {{ total_police }}
+            </span>
+
+            <span class="stat-label">
+                Police Stations
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- FACILITY TABLE -->
+
+    <div class="admin-card">
+
+        <div class="admin-card-header">
+
+            <div>
+
+                <h2>
+                    Facility Directory
+                </h2>
+
+                <p>
+                    All facilities currently stored in the database.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% if facilities %}
+
+        <div class="table-wrapper">
+
+            <table class="facility-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for facility in facilities %}
+
+                    <tr>
+
+                        <td>
+                            {{ facility.id }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                {{ facility.name }}
+                            </strong>
+                        </td>
+
+                        <td>
+
+                            <span class="table-category">
+                                {{ facility.category }}
+                            </span>
+
+                        </td>
+
+                        <td>
+                            {{ facility.address }}
+                        </td>
+
+                        <td>
+                            {{ facility.phone or "N/A" }}
+                        </td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <a
+                                    href="{{ url_for(
+                                        'edit_facility',
+                                        facility_id=facility.id
+                                    ) }}"
+                                    class="edit-btn">
+
+                                    Edit
+
+                                </a>
+
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for(
+                                        'delete_facility',
+                                        facility_id=facility.id
+                                    ) }}"
+                                    onsubmit="return confirm(
+                                        'Are you sure you want to delete this facility?'
+                                    );">
+
+                                    <button
+                                        type="submit"
+                                        class="delete-btn">
+
+                                        Delete
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <h3>
+                No facilities found.
+            </h3>
+
+            <p>
+                Click "Add Facility" to create the first facility.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

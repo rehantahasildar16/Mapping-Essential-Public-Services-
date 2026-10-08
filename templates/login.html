@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Login | Essential Public Services
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <span class="badge">
+                Administrator
+            </span>
+
+            <h1>
+                Admin Login
+            </h1>
+
+            <p>
+                Login to manage essential public service facilities.
+            </p>
+
+        </div>
+
+
+        <form method="POST" class="auth-form">
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit" class="primary-btn">
+                Login
+            </button>
+
+        </form>
+
+
+        <div class="login-info">
+
+            <p>
+                Default admin credentials:
+            </p>
+
+            <p>
+                Username: <strong>admin</strong>
+            </p>
+
+            <p>
+                Password: <strong>admin123</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

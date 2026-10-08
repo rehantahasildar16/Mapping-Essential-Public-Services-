@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block title %}
+Essential Public Services | Home
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            Locality Public Service Directory
+        </span>
+
+        <h1>
+            Find Essential Public Services Near You
+        </h1>
+
+        <p>
+            Discover hospitals, pharmacies, police stations,
+            schools, public toilets and other essential
+            facilities in your locality.
+        </p>
+
+        <div class="hero-search">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search facility, address or category..."
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="container">
+
+    <!-- CATEGORY FILTER -->
+
+    <div class="section-heading">
+
+        <div>
+            <h2>
+                Essential Facilities
+            </h2>
+
+            <p>
+                Browse services available in the surveyed locality.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="category-buttons">
+
+        <button
+            class="category-btn active"
+            onclick="filterFacilities('All')">
+            All
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterFacilities('Hospital')">
+            Hospitals
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterFacilities('Pharmacy')">
+            Pharmacies
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterFacilities('Police Station')">
+            Police Stations
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterFacilities('School')">
+            Schools
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterFacilities('Public Toilet')">
+            Public Toilets
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterFacilities('Other')">
+            Other
+        </button>
+
+    </div>
+
+
+    <!-- MAP -->
+
+    <div class="map-section">
+
+        <h2>
+            Interactive Map
+        </h2>
+
+        <div id="map"></div>
+
+    </div>
+
+
+    <!-- FACILITY LIST -->
+
+    <div class="facility-grid" id="facilityContainer">
+
+        {% for facility in facilities %}
+
+        <div
+            class="facility-card"
+            data-name="{{ facility.name|lower }}"
+            data-category="{{ facility.category }}"
+            data-address="{{ facility.address|lower }}"
+        >
+
+            <div class="facility-category">
+                {{ facility.category }}
+            </div>
+
+            <h3>
+                {{ facility.name }}
+            </h3>
+
+            <p>
+                {{ facility.address }}
+            </p>
+
+            {% if facility.phone %}
+
+            <p>
+                <strong>Phone:</strong>
+                {{ facility.phone }}
+            </p>
+
+            {% endif %}
+
+
+            {% if facility.opening_hours %}
+
+            <p>
+                <strong>Hours:</strong>
+                {{ facility.opening_hours }}
+            </p>
+
+            {% endif %}
+
+
+            {% if facility.description %}
+
+            <p class="description">
+                {{ facility.description }}
+            </p>
+
+            {% endif %}
+
+
+            {% if facility.latitude and facility.longitude %}
+
+            <button
+                class="view-map-btn"
+                onclick="focusFacility(
+                    {{ facility.latitude }},
+                    {{ facility.longitude }}
+                )">
+
+                View on Map
+
+            </button>
+
+            {% endif %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <h3>
+                No facilities added yet.
+            </h3>
+
+            <p>
+                The administrator can add facilities
+                from the admin dashboard.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

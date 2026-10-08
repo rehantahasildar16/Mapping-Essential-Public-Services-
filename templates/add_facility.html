@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Facility | Essential Public Services
+{% endblock %}
+
+{% block content %}
+
+<section class="form-section">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="badge">
+                Facility Management
+            </span>
+
+            <h1>
+                Add New Facility
+            </h1>
+
+            <p>
+                Enter the details of an essential public service.
+            </p>
+
+        </div>
+
+
+        <form method="POST" class="facility-form">
+
+            <div class="form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="form-group full-width">
+
+                    <label for="name">
+                        Facility Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Example: City Hospital"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Category *
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Hospital">
+                            Hospital
+                        </option>
+
+                        <option value="Pharmacy">
+                            Pharmacy
+                        </option>
+
+                        <option value="Police Station">
+                            Police Station
+                        </option>
+
+                        <option value="School">
+                            School
+                        </option>
+
+                        <option value="Public Toilet">
+                            Public Toilet
+                        </option>
+
+                        <option value="Fire Station">
+                            Fire Station
+                        </option>
+
+                        <option value="Government Office">
+                            Government Office
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Example: 9876543210"
+                    >
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group full-width">
+
+                    <label for="address">
+                        Address *
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="3"
+                        placeholder="Enter complete address"
+                        required></textarea>
+
+                </div>
+
+
+                <!-- OPENING HOURS -->
+
+                <div class="form-group">
+
+                    <label for="opening_hours">
+                        Opening Hours
+                    </label>
+
+                    <input
+                        type="text"
+                        id="opening_hours"
+                        name="opening_hours"
+                        placeholder="Example: 24 Hours"
+                    >
+
+                </div>
+
+
+                <!-- LATITUDE -->
+
+                <div class="form-group">
+
+                    <label for="latitude">
+                        Latitude
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="latitude"
+                        name="latitude"
+                        placeholder="Example: 19.2094"
+                    >
+
+                </div>
+
+
+                <!-- LONGITUDE -->
+
+                <div class="form-group">
+
+                    <label for="longitude">
+                        Longitude
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="longitude"
+                        name="longitude"
+                        placeholder="Example: 73.0939"
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group full-width">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                        placeholder="Enter additional information about the facility"></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <a
+                    href="{{ url_for('admin') }}"
+                    class="secondary-btn">
+
+                    Cancel
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Add Facility
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

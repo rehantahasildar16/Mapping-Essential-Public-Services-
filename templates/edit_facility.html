@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Facility | Essential Public Services
+{% endblock %}
+
+{% block content %}
+
+<section class="form-section">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <span class="badge">
+                Facility Management
+            </span>
+
+            <h1>
+                Edit Facility
+            </h1>
+
+            <p>
+                Update the information of this public facility.
+            </p>
+
+        </div>
+
+
+        <form method="POST" class="facility-form">
+
+            <div class="form-grid">
+
+
+                <div class="form-group full-width">
+
+                    <label for="name">
+                        Facility Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="{{ facility.name }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Category *
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        required>
+
+                        <option value="Hospital"
+                            {% if facility.category == "Hospital" %}
+                            selected
+                            {% endif %}>
+                            Hospital
+                        </option>
+
+                        <option value="Pharmacy"
+                            {% if facility.category == "Pharmacy" %}
+                            selected
+                            {% endif %}>
+                            Pharmacy
+                        </option>
+
+                        <option value="Police Station"
+                            {% if facility.category == "Police Station" %}
+                            selected
+                            {% endif %}>
+                            Police Station
+                        </option>
+
+                        <option value="School"
+                            {% if facility.category == "School" %}
+                            selected
+                            {% endif %}>
+                            School
+                        </option>
+
+                        <option value="Public Toilet"
+                            {% if facility.category == "Public Toilet" %}
+                            selected
+                            {% endif %}>
+                            Public Toilet
+                        </option>
+
+                        <option value="Fire Station"
+                            {% if facility.category == "Fire Station" %}
+                            selected
+                            {% endif %}>
+                            Fire Station
+                        </option>
+
+                        <option value="Government Office"
+                            {% if facility.category == "Government Office" %}
+                            selected
+                            {% endif %}>
+                            Government Office
+                        </option>
+
+                        <option value="Other"
+                            {% if facility.category == "Other" %}
+                            selected
+                            {% endif %}>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value="{{ facility.phone or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label for="address">
+                        Address *
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="3"
+                        required>{{ facility.address }}</textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="opening_hours">
+                        Opening Hours
+                    </label>
+
+                    <input
+                        type="text"
+                        id="opening_hours"
+                        name="opening_hours"
+                        value="{{ facility.opening_hours or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="latitude">
+                        Latitude
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="latitude"
+                        name="latitude"
+                        value="{{ facility.latitude or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="longitude">
+                        Longitude
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="longitude"
+                        name="longitude"
+                        value="{{ facility.longitude or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4">{{ facility.description or '' }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <a
+                    href="{{ url_for('admin') }}"
+                    class="secondary-btn">
+
+                    Cancel
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Update Facility
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}
